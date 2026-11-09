@@ -1,20 +1,50 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
-    <meta name="theme-color" content="#0b0f14" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="Train 21" />
-    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
-    <link rel="icon" type="image/png" href="./favicon.png" />
-    <title>Train 21: Blackjack Trainer</title>
-    <script type="module" crossorigin src="/train21/assets/index-D9x8Td9R.js"></script>
-    <link rel="stylesheet" crossorigin href="/train21/assets/index-BfcDH1R-.css">
-  <link rel="manifest" href="/train21/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/train21/registerSW.js"></script></head>
-  <body>
-    <div id="root"></div>
-  </body>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>Train 21: Blackjack Trainer</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #0b0f14; color: #e8edf2; font: 17px/1.55 -apple-system, system-ui, 'Segoe UI', Roboto, sans-serif; }
+  main { max-width: 680px; margin: 0 auto; padding: 28px 20px 60px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; } h2 { font-size: 1.15rem; margin: 28px 0 6px; }
+  .muted { color: #9aa7b6; font-size: .9rem; } a { color: #6cb6ff; }
+  .card { background: #131a22; border: 1px solid #25303c; border-radius: 12px; padding: 4px 16px; margin: 12px 0; }
+  .links a { margin-right: 18px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Train 21: Blackjack Trainer</h1>
+  <p>Coming soon to the App Store for iPhone.</p>
+  <div class="card">
+    <h2>App Store</h2>
+    <!-- APP_STORE_URL: when the listing is live, replace the paragraph below with
+         <p><a href="https://apps.apple.com/app/idXXXXXXXXXX">Download on the App Store</a></p> -->
+    <p class="muted">App Store link coming soon.</p>
+  </div>
+  <p class="links">
+    <a href="privacy/">Privacy Policy</a>
+    <a href="support/">Support</a>
+  </p>
+</main>
+<script>
+/* Previously, /train21/registerSW.js called
+   navigator.serviceWorker.register('/train21/sw.js', { scope: '/train21/' }).
+   sw.js now clears caches and unregisters that worker. This covers a hard
+   refresh, which bypasses the worker. No network requests. */
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistrations().then(function (regs) {
+    for (var i = 0; i < regs.length; i++) regs[i].unregister();
+  });
+}
+if (window.caches && typeof caches.keys === 'function') {
+  caches.keys().then(function (keys) {
+    for (var i = 0; i < keys.length; i++) caches.delete(keys[i]);
+  });
+}
+</script>
+</body>
 </html>
